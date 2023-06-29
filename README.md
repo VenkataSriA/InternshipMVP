@@ -1,4 +1,5 @@
 # InternshipMVP
+<<<<<<< HEAD
 tring pull request trial1
 trial2
 trial 3
@@ -8,3 +9,7 @@ trial 6
 trial 7
 trial 8
 trial 9
+=======
+
+trying pull request1
+>>>>>>> main
