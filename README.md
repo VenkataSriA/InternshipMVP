@@ -9,7 +9,7 @@ trial 6
 trial 7
 trial 8
 trial 9
-=======
+
 
 trying pull request1
->>>>>>> main
+
