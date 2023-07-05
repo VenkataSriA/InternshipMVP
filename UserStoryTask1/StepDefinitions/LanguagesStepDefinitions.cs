@@ -97,7 +97,6 @@ namespace InternTask1.StepDefinitions
         }
 
 
-
         [AfterScenario]
         public void AfterScenario()
         {
