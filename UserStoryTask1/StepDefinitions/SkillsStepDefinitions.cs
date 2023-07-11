@@ -90,7 +90,6 @@ namespace UserStoryTask1.StepDefinitions
             skillspageobj.checkCancelFunction();
         }
 
-
         [Then(@"Existing skill deleted successfully\.")]
         public void ThenExistingSkillDeletedSuccessfully_()
         {
