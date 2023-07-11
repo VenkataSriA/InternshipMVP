@@ -140,8 +140,6 @@ namespace UserStoryTask1.Pages
         public (string, string) VerifyEditedSkills()
 
         {
-
-
             Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[1]/div/a[2]", 7);
             driver.FindElement(profileTabButton).Click();
 
