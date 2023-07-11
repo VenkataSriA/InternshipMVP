@@ -10,15 +10,44 @@ Scenario Outline: [1] Add details to skills tab.
 	When I navigate to Profile page
 	And I add new '<Skills>' and '<Level>'
 	Then Verify new '<Skills>' and '<Level>' are added successfully.
+	 
+	Examples: 
+	| Skills | Level              |
+	|        | Choose Skill Level |
+	|        | Beginner           |
+	| QA     |                    |
+	| Tester | Intermediate       |
+	| Tester | Intermediate       |
+	| Tester | Expert             |
+	| tester | Intermediate       |
+	| [!#$>? | Beginner           |
+	| " "    | Expert             |
+	
+	@mytag2
+	Scenario Outline: [2] Edit details of added languages tab.
+	Given User is logged into localhost
+	When I navigate to Profile page
+	And I edit existing '<Skills>' and '<Level>'
+	Then Verify new '<Skills>' and '<Level>' are edited successfully.
 
 	Examples: 
-	| Skills | Level                 |
-	|          | Choose Language Level |
-	| English  | Basic                 |
-	| English  | Conversational        |
-	| english  | Basic                 |
-	| !@34     | Fluent                |
-	|          | Basic                 |
-	| French   | Choose Language Level |
-	| 123      | Native/Bilingual      |
-	| German   | Basic                 |
+	| Skills       | Level              |
+	| Test Analyst | Intermediate       |
+	|              | Choose Skill Level |
+	|              | Beginner           |
+	| Tester       | Expert             |
+	| Tester       | Intermediate       |
+	| 1234         | Expert             |
+	
+	@mytag3
+	Scenario Outline: [3] Delete details of added languages.
+	Given User is logged into localhost
+	When I navigate to Profile page
+	And I delete existing '<Skills>' and '<Level>'
+	Then Existing skill deleted successfully.
+
+	Examples: 
+	| Skills | Level        |
+	| tester | Expert       |
+	| [!#$>? | Beginner     |
+	| tester | Intermediate |

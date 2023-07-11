@@ -13,14 +13,15 @@ Scenario Outline: [1] Add details to languages tab.
 
 	Examples: 
 	| Language | Level                 |
+	| English  | Basic                 |
 	|          | Choose Language Level |
 	| English  | Basic                 |
 	| English  | Conversational        |
 	| english  | Basic                 |
-	| !@34     | Fluent                |
-	|          | Basic                 |
 	| French   | Choose Language Level |
-	| 123      | Native/Bilingual      |
+	|          | Basic                 |
+	| !@34     | Fluent                |
+	| " "      | Native/Bilingual      |
 	| German   | Basic                 |
 	
 	@mytag2
@@ -32,10 +33,10 @@ Scenario Outline: [1] Add details to languages tab.
 
 	Examples: 
 	| Language | Level            |
-	| Spanish   | Conversational   |
-	|		   | Fluent           |
-	|German   |  Language Level  |
-	|English    | Native/Bilingual           |
+	| Spanish  | Conversational   |
+	|          | Fluent           |
+	| German   | Language Level   |
+	| English  | Native/Bilingual |
 	
 	@mytag3
 	Scenario Outline: [3] Delete details of added languages.

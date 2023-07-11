@@ -78,16 +78,16 @@ namespace UserStoryTask1.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("[1] Add details to skills tab.")]
         [NUnit.Framework.CategoryAttribute("mytag1")]
-        [NUnit.Framework.TestCaseAttribute("", "Choose Language Level", null)]
-        [NUnit.Framework.TestCaseAttribute("English", "Basic", null)]
-        [NUnit.Framework.TestCaseAttribute("English", "Conversational", null)]
-        [NUnit.Framework.TestCaseAttribute("english", "Basic", null)]
-        [NUnit.Framework.TestCaseAttribute("!@34", "Fluent", null)]
-        [NUnit.Framework.TestCaseAttribute("", "Basic", null)]
-        [NUnit.Framework.TestCaseAttribute("French", "Choose Language Level", null)]
-        [NUnit.Framework.TestCaseAttribute("123", "Native/Bilingual", null)]
-        [NUnit.Framework.TestCaseAttribute("German", "Basic", null)]
-        public void _1AddDetailsToSkillsTab_(string language, string level, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("", "Choose Skill Level", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("QA", "", null)]
+        [NUnit.Framework.TestCaseAttribute("Tester", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("Tester", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("Tester", "Expert", null)]
+        [NUnit.Framework.TestCaseAttribute("tester", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("[!#$>?", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("\" \"", "Expert", null)]
+        public void _1AddDetailsToSkillsTab_(string skills, string level, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "mytag1"};
@@ -97,7 +97,7 @@ namespace UserStoryTask1.Features
             }
             string[] tagsOfScenario = @__tags;
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            argumentsOfScenario.Add("Language", language);
+            argumentsOfScenario.Add("Skills", skills);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[1] Add details to skills tab.", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
@@ -117,10 +117,103 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 11
- testRunner.And(string.Format("I Add new \'<Skills>\' and \'{0}\'", level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And(string.Format("I add new \'{0}\' and \'{1}\'", skills, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 12
- testRunner.Then(string.Format("New \'<Skills>\' and \'{0}\' are added successfully.", level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("Verify new \'{0}\' and \'{1}\' are added successfully.", skills, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("[2] Edit details of added languages tab.")]
+        [NUnit.Framework.CategoryAttribute("mytag2")]
+        [NUnit.Framework.TestCaseAttribute("Test Analyst", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Choose Skill Level", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("Tester", "Expert", null)]
+        [NUnit.Framework.TestCaseAttribute("Tester", "Intermediate", null)]
+        [NUnit.Framework.TestCaseAttribute("1234", "Expert", null)]
+        public void _2EditDetailsOfAddedLanguagesTab_(string skills, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "mytag2"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Skills", skills);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[2] Edit details of added languages tab.", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 27
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 28
+ testRunner.Given("User is logged into localhost", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 29
+ testRunner.When("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 30
+ testRunner.And(string.Format("I edit existing \'{0}\' and \'{1}\'", skills, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 31
+ testRunner.Then(string.Format("Verify new \'{0}\' and \'{1}\' are edited successfully.", skills, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("[3] Delete details of added languages.")]
+        [NUnit.Framework.CategoryAttribute("mytag3")]
+        [NUnit.Framework.TestCaseAttribute("tester", "Expert", null)]
+        [NUnit.Framework.TestCaseAttribute("[!#$>?", "Beginner", null)]
+        [NUnit.Framework.TestCaseAttribute("tester", "Intermediate", null)]
+        public void _3DeleteDetailsOfAddedLanguages_(string skills, string level, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "mytag3"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Skills", skills);
+            argumentsOfScenario.Add("Level", level);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[3] Delete details of added languages.", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 43
+ this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 44
+ testRunner.Given("User is logged into localhost", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 45
+ testRunner.When("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 46
+ testRunner.And(string.Format("I delete existing \'{0}\' and \'{1}\'", skills, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 47
+ testRunner.Then("Existing skill deleted successfully.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
