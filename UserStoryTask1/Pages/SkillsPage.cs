@@ -150,10 +150,7 @@ namespace UserStoryTask1.Pages
             IWebElement editedSkillLevel = driver.FindElement(By.XPath("//form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
 
             return (editedSkill.Text, editedSkillLevel.Text);
-
-            //Assert.That(addedLanguage, Is.EqualTo(Language), "Language is not added or doesnt exist");
-            //Assert.That(addedLanguageLevel, Is.EqualTo(Level), "Level is not added or doesnt exsit");
-
+            
         }
 
         //Use this method to find and delete a particular language and level
