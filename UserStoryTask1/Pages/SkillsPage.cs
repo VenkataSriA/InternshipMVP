@@ -140,14 +140,17 @@ namespace UserStoryTask1.Pages
         public (string, string) VerifyEditedSkills()
 
         {
-            Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[1]/div/a[2]", 7);
+            Actions action = new Actions(driver);
+            action.SendKeys(Keys.PageDown);
+
             driver.FindElement(profileTabButton).Click();
+            driver.FindElement(skillsTab).Click();
 
-            Wait.WaitToBeVisible(driver, "XPath", "//form/div[2]/div/div[2]/div/table/tbody/tr/td[1]", 2);
-            IWebElement editedSkill = driver.FindElement(By.XPath("//form/div[2]/div/div[2]/div/table/tbody/tr/td[1]"));
+            Wait.WaitToBeVisible(driver, "XPath", "//form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]", 2);
+            IWebElement editedSkill = driver.FindElement(By.XPath("//form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[1]"));
 
-            Wait.WaitToBeVisible(driver, "XPath", "//form/div[2]/div/div[2]/div/table/tbody/tr/td[2]", 7);
-            IWebElement editedSkillLevel = driver.FindElement(By.XPath("//form/div[2]/div/div[2]/div/table/tbody/tr/td[2]"));
+            Wait.WaitToBeVisible(driver, "XPath", "//form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]", 7);
+            IWebElement editedSkillLevel = driver.FindElement(By.XPath("//form/div[3]/div/div[2]/div/table/tbody[last()]/tr/td[2]"));
 
             return (editedSkill.Text, editedSkillLevel.Text);
             
@@ -158,14 +161,12 @@ namespace UserStoryTask1.Pages
         {
                         
             driver.FindElement(skillsTab).Click();
-
+            
             // find the element in the table
             try
             {
-                IWebElement findSkill = driver.FindElement(By.XPath($"//tbody[tr[td[text()='{Skills}'] and td[text()='{Level}']]]"));
+                 IWebElement findSkill = driver.FindElement(By.XPath($"//tbody[tr[td[text()='{Skills}'] and td[text()='{Level}']]]"));
 
-                if (findSkill != null)
-                {
                     var deleteIcon = driver.FindElement(By.XPath($"//tbody[tr[td[text()='{Skills}'] and td[text()='{Level}']]]//span[2]/i"));
                     // Find and click the delete icon in the row            
                     deleteIcon.Click();
@@ -178,7 +179,7 @@ namespace UserStoryTask1.Pages
                     string actualMessage = messageBox.Text;
                     Console.WriteLine(actualMessage);
                     // Verify the expected message text
-                }
+                
 
             }
             catch (NoSuchElementException)
@@ -192,8 +193,7 @@ namespace UserStoryTask1.Pages
             
         public void checkCancelFunction()
         {
-
-            driver.FindElement(profileTabButton).Click();
+                        
             driver.FindElement(skillsTab).Click();
 
             //scroll down

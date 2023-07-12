@@ -13,11 +13,10 @@ Scenario Outline: [1] Add details to skills tab.
 	 
 	Examples: 
 	| Skills | Level              |
+	| Tester | Intermediate       |
 	|        | Choose Skill Level |
 	|        | Beginner           |
 	| QA     |                    |
-	| Tester | Intermediate       |
-	| Tester | Intermediate       |
 	| Tester | Expert             |
 	| tester | Intermediate       |
 	| [!#$>? | Beginner           |

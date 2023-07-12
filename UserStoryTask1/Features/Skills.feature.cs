@@ -78,11 +78,10 @@ namespace UserStoryTask1.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("[1] Add details to skills tab.")]
         [NUnit.Framework.CategoryAttribute("mytag1")]
+        [NUnit.Framework.TestCaseAttribute("Tester", "Intermediate", null)]
         [NUnit.Framework.TestCaseAttribute("", "Choose Skill Level", null)]
         [NUnit.Framework.TestCaseAttribute("", "Beginner", null)]
         [NUnit.Framework.TestCaseAttribute("QA", "", null)]
-        [NUnit.Framework.TestCaseAttribute("Tester", "Intermediate", null)]
-        [NUnit.Framework.TestCaseAttribute("Tester", "Intermediate", null)]
         [NUnit.Framework.TestCaseAttribute("Tester", "Expert", null)]
         [NUnit.Framework.TestCaseAttribute("tester", "Intermediate", null)]
         [NUnit.Framework.TestCaseAttribute("[!#$>?", "Beginner", null)]
@@ -148,7 +147,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Skills", skills);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[2] Edit details of added languages tab.", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 27
+#line 26
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -158,16 +157,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 28
+#line 27
  testRunner.Given("User is logged into localhost", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 29
+#line 28
  testRunner.When("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 30
+#line 29
  testRunner.And(string.Format("I edit existing \'{0}\' and \'{1}\'", skills, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 31
+#line 30
  testRunner.Then(string.Format("Verify new \'{0}\' and \'{1}\' are edited successfully.", skills, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -193,7 +192,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Skills", skills);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[3] Delete details of added languages.", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 43
+#line 42
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -203,16 +202,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 44
+#line 43
  testRunner.Given("User is logged into localhost", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 45
+#line 44
  testRunner.When("I navigate to Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 46
+#line 45
  testRunner.And(string.Format("I delete existing \'{0}\' and \'{1}\'", skills, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 47
+#line 46
  testRunner.Then("Existing skill deleted successfully.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

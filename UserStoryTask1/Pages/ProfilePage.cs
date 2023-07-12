@@ -51,36 +51,35 @@ namespace InternshipTask1.Pages
                     Wait.WaitToBeClickable(driver, "XPath", "//thead/tr/th[3]/div[@class='ui teal button ']", 3);
                     addNewButton.Click();
                     // Additional code
+
+                    driver.FindElement(addLanguage).Click();
+                    driver.FindElement(addLanguage).SendKeys(Language);
+
+
+                    IWebElement chooseLanguageLevel = driver.FindElement(By.XPath("//select[@class='ui dropdown']"));
+                    SelectElement languageLevel = new SelectElement(chooseLanguageLevel);
+                    languageLevel.SelectByText(Level); // selects based on text in dropdown            
+
+                    driver.FindElement(addButton).Click();
+
+                    //check for message that new language is added successfully
+                    Wait.WaitToBeVisible(driver, "XPath", "//div[@class='ns-box-inner']", 3);
+                    IWebElement messageBox = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
+
+                    // Get the text of the message element
+                    string actualMessage = messageBox.Text;
+                    Console.WriteLine(actualMessage);
+
+                    // Verify the expected message text
+                    string expectedMessage1 = Language + " has been added to your languages";
+                    string expectedMessage2 = "Please enter language and level";
+                    string expectedMessage3 = "This language is already exist in your language list.";
+                    string expectedMessage4 = "Duplicated data";
+
+                    Assert.That(actualMessage, Is.EqualTo(expectedMessage1).Or.EqualTo(expectedMessage2).Or.EqualTo(expectedMessage3).Or.EqualTo(expectedMessage4));
                 }
                 
-
-                Wait.WaitToBeClickable(driver, "XPath", "//div[@class='five wide field']/input", 5);
-
-                driver.FindElement(addLanguage).Click();
-                driver.FindElement(addLanguage).SendKeys(Language);
-
-
-                IWebElement chooseLanguageLevel = driver.FindElement(By.XPath("//select[@class='ui dropdown']"));
-                SelectElement languageLevel = new SelectElement(chooseLanguageLevel);
-                languageLevel.SelectByText(Level); // selects based on text in dropdown            
-
-                driver.FindElement(addButton).Click();
-
-                //check for message that new language is added successfully
-                Wait.WaitToBeVisible(driver, "XPath", "//div[@class='ns-box-inner']", 3);
-                IWebElement messageBox = driver.FindElement(By.XPath("//div[@class='ns-box-inner']"));
-
-                // Get the text of the message element
-                string actualMessage = messageBox.Text;
-                Console.WriteLine(actualMessage);
-
-                // Verify the expected message text
-                string expectedMessage1 = Language + " has been added to your languages";
-                string expectedMessage2 = "Please enter language and level";
-                string expectedMessage3 = "This language is already exist in your language list.";
-                string expectedMessage4 = "Duplicated data";
-
-                Assert.That(actualMessage, Is.EqualTo(expectedMessage1).Or.EqualTo(expectedMessage2).Or.EqualTo(expectedMessage3).Or.EqualTo(expectedMessage4));
+                
 
                 //Using assert are equal fails the test.
                 //Assert.AreEqual(expectedMessage1, actualMessage, "The language and level already exist");
@@ -232,6 +231,7 @@ namespace InternshipTask1.Pages
 
             //check cancel for add 
             addNewButton.Click();
+            Wait.WaitToBeClickable(driver, "XPath", "//input[@value= 'Cancel']", 5);
             driver.FindElement(cancelButton).Click();
             Console.WriteLine("Cancel function checked for AddNew");
 

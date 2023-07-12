@@ -15,9 +15,8 @@ Scenario Outline: [1] Add details to languages tab.
 	| Language | Level                 |
 	| English  | Basic                 |
 	|          | Choose Language Level |
-	| English  | Basic                 |
-	| English  | Conversational        |
-	| english  | Basic                 |
+	| English  | Fluent                 |
+	| english  | Conversational        |
 	| French   | Choose Language Level |
 	|          | Basic                 |
 	| !@34     | Fluent                |

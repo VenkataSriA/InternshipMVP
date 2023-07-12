@@ -80,9 +80,8 @@ namespace UserStoryTask1.Features
         [NUnit.Framework.CategoryAttribute("mytag1")]
         [NUnit.Framework.TestCaseAttribute("English", "Basic", null)]
         [NUnit.Framework.TestCaseAttribute("", "Choose Language Level", null)]
-        [NUnit.Framework.TestCaseAttribute("English", "Basic", null)]
-        [NUnit.Framework.TestCaseAttribute("English", "Conversational", null)]
-        [NUnit.Framework.TestCaseAttribute("english", "Basic", null)]
+        [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("english", "Conversational", null)]
         [NUnit.Framework.TestCaseAttribute("French", "Choose Language Level", null)]
         [NUnit.Framework.TestCaseAttribute("", "Basic", null)]
         [NUnit.Framework.TestCaseAttribute("!@34", "Fluent", null)]
@@ -147,7 +146,7 @@ this.ScenarioInitialize(scenarioInfo);
             argumentsOfScenario.Add("Language", language);
             argumentsOfScenario.Add("Level", level);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[2] Edit details of added languages tab.", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 28
+#line 27
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -157,16 +156,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 29
+#line 28
  testRunner.Given("User is logged into localhost", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 30
+#line 29
  testRunner.When("I navigate to Language tab on Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 30
  testRunner.And(string.Format("I Edit existing \'{0}\' and \'{1}\'", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 32
+#line 31
  testRunner.Then(string.Format("New \'{0}\' and \'{1}\' are edited successfully.", language, level), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
@@ -182,7 +181,7 @@ this.ScenarioInitialize(scenarioInfo);
                     "mytag3"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("[3] Delete details of added languages.", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 42
+#line 41
  this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -192,16 +191,16 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 this.ScenarioStart();
-#line 43
+#line 42
  testRunner.Given("User is logged into localhost", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
-#line 44
+#line 43
  testRunner.When("I navigate to Language tab on Profile page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 45
+#line 44
  testRunner.And("I delete existing record.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 46
+#line 45
  testRunner.Then("Existing record deleted successfully.", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

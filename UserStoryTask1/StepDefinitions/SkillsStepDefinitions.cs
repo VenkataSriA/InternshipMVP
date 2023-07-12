@@ -84,8 +84,7 @@ namespace UserStoryTask1.StepDefinitions
 
         [When(@"I delete existing '([^']*)' and '([^']*)'")]
         public void WhenIDeleteExistingAnd(string Skills, string Level)
-        {
-            skillspageobj.GoToProfilePage();
+        {            
             skillspageobj.DeleteSkillsAndLevel(Skills, Level);
             skillspageobj.checkCancelFunction();
         }
