@@ -6,6 +6,5 @@ namespace InternshipTask1.Utilities
     {
         public static IWebDriver driver;
 
-
     }
 }

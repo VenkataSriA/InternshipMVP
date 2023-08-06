@@ -86,6 +86,14 @@ namespace UserStoryTask1.Features
         [NUnit.Framework.TestCaseAttribute("", "Basic", null)]
         [NUnit.Framework.TestCaseAttribute("French", "Choose Language Level", null)]
         [NUnit.Framework.TestCaseAttribute("123", "Native/Bilingual", null)]
+        [NUnit.Framework.TestCaseAttribute("English", "Basic", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Choose Language Level", null)]
+        [NUnit.Framework.TestCaseAttribute("English", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("english", "Conversational", null)]
+        [NUnit.Framework.TestCaseAttribute("French", "Choose Language Level", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Basic", null)]
+        [NUnit.Framework.TestCaseAttribute("!@34", "Fluent", null)]
+        [NUnit.Framework.TestCaseAttribute("\" \"", "Native/Bilingual", null)]
         [NUnit.Framework.TestCaseAttribute("German", "Basic", null)]
         public void _1AddDetailsToLanguagesTab_(string language, string level, string[] exampleTags)
         {
