@@ -131,7 +131,9 @@ namespace InternshipTask1.Pages
             driver.FindElement(editButton).Click();
 
             Wait.WaitToBeClickable(driver, "XPath", "//div[@class='five wide field']/input", 5);
-            driver.FindElement(addLanguage).Clear();            
+            driver.FindElement(addLanguage).SendKeys(Keys.Control + "A");
+            driver.FindElement(addLanguage).SendKeys(Keys.Backspace);
+            //driver.FindElement(addLanguage).Clear();            
             driver.FindElement(addLanguage).SendKeys(Language);
 
             IWebElement chooseLanguageLevel = driver.FindElement(By.XPath("//select[@class='ui dropdown']"));

@@ -30,13 +30,13 @@ Scenario Outline: [1] Add details to skills tab.
 	Then Verify new '<Skills>' and '<Level>' are edited successfully.
 
 	Examples: 
-	| Skills       | Level              |
-	| Test Analyst | Intermediate       |
-	|              | Choose Skill Level |
-	|              | Beginner           |
-	| Tester       | Expert             |
-	| Tester       | Intermediate       |
-	| 1234         | Expert             |
+	| Skills       | Level        |
+	| Test Analyst | Intermediate |
+	|              | Skill Level  |  
+	|              | Beginner     |
+	| Tester       | Expert       |
+	| Tester       | Intermediate |
+	| 1234         | Expert       |
 	
 	@mytag3
 	Scenario Outline: [3] Delete details of added languages.

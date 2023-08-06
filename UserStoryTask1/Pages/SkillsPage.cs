@@ -58,8 +58,9 @@ namespace UserStoryTask1.Pages
             driver.FindElement(skillAddNew).Click();
 
             Wait.WaitToBeClickable(driver, "XPath", "//input[@name='name']", 7);
-            driver.FindElement(addSkillTextbox).Click();
-            driver.FindElement(addSkillTextbox).SendKeys(Skill);
+            
+            //driver.FindElement(addSkillTextbox).Clear();
+            driver.FindElement(addSkillTextbox).SendKeys(Skill);            
 
             Wait.WaitToBeClickable(driver, "XPath", "//select[@name='level']", 7);
             driver.FindElement(skilllevel).SendKeys(Level);
@@ -108,7 +109,9 @@ namespace UserStoryTask1.Pages
             driver.FindElement(editSkillButton).Click();
 
             Wait.WaitToBeClickable(driver, "XPath", "//div[@class='five wide field']/input", 5);
-            driver.FindElement(addSkillTextbox).Clear();
+            driver.FindElement(addSkillTextbox).SendKeys(Keys.Control + "A");
+            driver.FindElement(addSkillTextbox).SendKeys(Keys.Backspace);
+            //driver.FindElement(addSkillTextbox).Clear();
             driver.FindElement(addSkillTextbox).SendKeys(Skills);
 
             Wait.WaitToBeClickable(driver, "XPath", "//select[@name='level']", 7);

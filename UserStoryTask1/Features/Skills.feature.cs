@@ -129,7 +129,7 @@ this.ScenarioInitialize(scenarioInfo);
         [NUnit.Framework.DescriptionAttribute("[2] Edit details of added languages tab.")]
         [NUnit.Framework.CategoryAttribute("mytag2")]
         [NUnit.Framework.TestCaseAttribute("Test Analyst", "Intermediate", null)]
-        [NUnit.Framework.TestCaseAttribute("", "Choose Skill Level", null)]
+        [NUnit.Framework.TestCaseAttribute("", "Skill Level", null)]
         [NUnit.Framework.TestCaseAttribute("", "Beginner", null)]
         [NUnit.Framework.TestCaseAttribute("Tester", "Expert", null)]
         [NUnit.Framework.TestCaseAttribute("Tester", "Intermediate", null)]
