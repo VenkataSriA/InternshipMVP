@@ -3,17 +3,10 @@ using ConsoleApp2.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp2.Pages
 {
-    public class CertificationPage: CommonDriver
+    public class CertificationPage : CommonDriver
     {
         By profileTab => By.XPath("//*[@id=\"account-profile-section\"]/div/section[1]/div/a[2]");
         By certificationTab => By.XPath("//a[text()='Certifications']"); //*[contains(text(), 'Certifications')]
@@ -24,10 +17,11 @@ namespace ConsoleApp2.Pages
         By addButton => By.XPath("//div/div[3]/input[@value='Add']"); //add the education inputs
         By cancelButton => By.XPath("//div/div[3]/input[@value='Cancel']");
 
-        public void AddCertification(string Certificate, string CertifiedFrom, int Year) 
+        public void AddCertification(string Certificate, string CertifiedFrom, int Year)
         {
             driver.FindElement(profileTab).Click();
             driver.FindElement(certificationTab).Click();
+            Wait.WaitToBeClickable(driver, "XPath", "//thead/tr/th[4]/div[@class='ui teal button ']", 5);
             driver.FindElement(addNewButton).Click();
 
             Actions action = new(driver);
@@ -42,7 +36,7 @@ namespace ConsoleApp2.Pages
             Wait.WaitToBeClickable(driver, "XPath", "//input[@name='certificationFrom']", 7);
             driver.FindElement(certifiedFrom).Click();
             driver.FindElement(certifiedFrom).SendKeys(CertifiedFrom);
-  
+
             //click on year of graduation year list
             driver.FindElement(certificateYear).Click();
             driver.FindElement(certificateYear).SendKeys(Year.ToString());
@@ -59,10 +53,10 @@ namespace ConsoleApp2.Pages
             Console.WriteLine(actualMessage);
 
             // Verify the expected message text            
-            string expectedMessage1 =   Certificate + " has been added to your certification";
+            string expectedMessage1 = Certificate + " has been added to your certification";
             string expectedMessage2 = "Please enter Certification Name, Certification From and Certification Year";
             string expectedMessage3 = "Duplicated data";
-            string expectedMessage4 = "This information is already exist.";            
+            string expectedMessage4 = "This information is already exist.";
             string expectedMessage5 = "has been added to your certification";
 
             Assert.That(actualMessage, Is.EqualTo(expectedMessage1).Or.EqualTo(expectedMessage2).Or.EqualTo(expectedMessage3).Or.EqualTo(expectedMessage4).Or.EqualTo(expectedMessage5));
@@ -84,6 +78,7 @@ namespace ConsoleApp2.Pages
             }
         }
 
+
         public void EditCertification(string Certificate, string CertifiedFrom, int Year)
         {
             ExtentReportManager.CreateTest("Editing records to Certification", $"CerificateName: {Certificate}, CertifiedBy: {CertifiedFrom}, Year: {Year}");
@@ -92,15 +87,17 @@ namespace ConsoleApp2.Pages
 
             Actions action = new(driver);
             action.SendKeys(Keys.PageDown).Perform();
-                     
+
             //add certification name
             Wait.WaitToBeClickable(driver, "XPath", "//input[@name='certificationName']", 7);
-            driver.FindElement(addCertification).Clear();
+            driver.FindElement(addCertification).SendKeys(Keys.Control + "A");
+            driver.FindElement(addCertification).SendKeys(Keys.Backspace);
             driver.FindElement(addCertification).SendKeys(Certificate);
 
             //click on certfied from
             Wait.WaitToBeClickable(driver, "XPath", "//input[@name='certificationFrom']", 7);
-            driver.FindElement(certifiedFrom).Clear();
+            driver.FindElement(certifiedFrom).SendKeys(Keys.Control + "A");
+            driver.FindElement(certifiedFrom).SendKeys(Keys.Backspace);
             driver.FindElement(certifiedFrom).SendKeys(CertifiedFrom);
 
             //click on year of certification year list
@@ -144,10 +141,10 @@ namespace ConsoleApp2.Pages
             }
 
         }
-        public void EditCertificationUpdate1(string Certificate, string CertifiedFrom, int Year)
+        public void EditCertiPositiveUpdate1(string Certificate, string CertifiedFrom, int Year)
         {
             driver.FindElement(profileTab).Click();
-            
+
             //find and click on education tab
             Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[1]/div/a[2]", 7);
             driver.FindElement(certificationTab).Click();
@@ -164,9 +161,9 @@ namespace ConsoleApp2.Pages
             EditCertification(Certificate, CertifiedFrom, Year);
         }
 
-        public void EditCertificationUpdate2(string Certificate, string CertifiedFrom, int Year)
+        public void EditCertiPositiveUpdate2(string Certificate, string CertifiedFrom, int Year)
         {
-            
+
             try
             {
                 //find the required record to edit    2nd row                               
@@ -177,9 +174,13 @@ namespace ConsoleApp2.Pages
 
             EditCertification(Certificate, CertifiedFrom, Year);
         }
-        public void EditCertificationUpdate3(string Certificate, string CertifiedFrom, int Year)
-        {           
+        public void EditCertiNegativeUpdate1(string Certificate, string CertifiedFrom, int Year)
+        {
+            driver.FindElement(profileTab).Click();
 
+            //find and click on education tab
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[1]/div/a[2]", 7);
+            driver.FindElement(certificationTab).Click();
             try
             {
                 //find the required record to edit    3rd row                                
@@ -190,9 +191,9 @@ namespace ConsoleApp2.Pages
 
             EditCertification(Certificate, CertifiedFrom, Year);
         }
-        public void EditCertificationUpdate4(string Certificate, string CertifiedFrom, int Year)
+        public void EditCertiNegativeUpdate2(string Certificate, string CertifiedFrom, int Year)
         {
-            
+
             try
             {
                 //find the required record to edit   4th row                                
@@ -203,7 +204,7 @@ namespace ConsoleApp2.Pages
 
             EditCertification(Certificate, CertifiedFrom, Year);
         }
-        public void EditCertificationUpdate5(string Certificate, string CertifiedFrom, int Year)
+        public void EditCertiNegativeUpdate3(string Certificate, string CertifiedFrom, int Year)
         {
             try
             {
@@ -215,21 +216,21 @@ namespace ConsoleApp2.Pages
 
             EditCertification(Certificate, CertifiedFrom, Year);
         }
-        public void EditCertificationUpdate6(string Certificate, string CertifiedFrom, int Year)
+        public void EditCertiNegativeUpdate4(string Certificate, string CertifiedFrom, int Year)
         {
 
             try
             {
-                //find the required record to edit    1st row
-                IWebElement updateIcon = driver.FindElement(By.XPath("//div[3]/form/div/div/div[2]/div/table/tbody[1]/tr/td[4]/span[1]/i"));
+                //find the required record to edit    6th row
+                IWebElement updateIcon = driver.FindElement(By.XPath("//div[3]/form/div/div/div[2]/div/table/tbody[6]/tr/td[4]/span[1]/i"));
                 updateIcon.Click();
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); }
 
             EditCertification(Certificate, CertifiedFrom, Year);
         }
-       
-        
+
+
         public void RemoveCertification(string Certificate, string CertifiedFrom, int Year)
         {
             driver.FindElement(profileTab).Click();
@@ -255,7 +256,7 @@ namespace ConsoleApp2.Pages
                 Console.WriteLine(actualMessage);
                 string expectedMessage1 = Certificate + " has been deleted from your certification";
                 if (actualMessage == expectedMessage1)
-                {                    
+                {
                     Console.WriteLine("Record Deleted");
                 }
                 // Take a screenshot and attach it to the report                

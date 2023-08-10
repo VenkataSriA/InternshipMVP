@@ -1,10 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp2.Utilities
 {
@@ -14,7 +9,7 @@ namespace ConsoleApp2.Utilities
         {
             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
 
-            if(locatorType == "XPath")
+            if (locatorType == "XPath")
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementToBeClickable(By.XPath(locatorValue)));
             }
@@ -38,17 +33,17 @@ namespace ConsoleApp2.Utilities
         }
         public static void WaitToExist(IWebDriver driver, string locatorType, string locatorValue, int seconds)
         {
-             var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
+            var wait = new WebDriverWait(driver, TimeSpan.FromSeconds(seconds));
 
-             if (locatorType == "XPath")
-             {
-                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(locatorValue)));
-             }
-             if (locatorType == "Id")
-             {
-                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(locatorValue)));
-             }
+            if (locatorType == "XPath")
+            {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(locatorValue)));
+            }
+            if (locatorType == "Id")
+            {
+                wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(locatorValue)));
+            }
         }
-       
+
     }
 }

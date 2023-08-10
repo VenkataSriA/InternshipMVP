@@ -1,14 +1,9 @@
 ﻿using AventStack.ExtentReports;
-using AventStack.ExtentReports.Reporter;
 using ConsoleApp2.Pages;
 using ConsoleApp2.Utilities;
-using Microsoft.VisualBasic;
-using MongoDB.Driver;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
 
 
 namespace ConsoleApp2.Tests
@@ -16,7 +11,7 @@ namespace ConsoleApp2.Tests
     [TestFixture]
     public class EducationTests : CommonDriver
     {
-        EducationPage educationpageobj = new ();
+        EducationPage educationpageobj = new();
 
         [OneTimeSetUp]
         public void SetupExtentReports()
@@ -43,14 +38,14 @@ namespace ConsoleApp2.Tests
             driver.Navigate().GoToUrl("http://localhost:5000/");
 
             //login 
-            LoginPage loginpageobj = new ();
+            LoginPage loginpageobj = new();
             loginpageobj.LoginSteps();
         }
         [Test, Order(1)]
         public void CreateEducation()
         {
-        
-            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\EducationJson.json";
+
+            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\Education\AddEducationJson.json";
             // Read the JSON file
             string jsonText = File.ReadAllText(EducationJsonFile);
 
@@ -74,28 +69,28 @@ namespace ConsoleApp2.Tests
                 ExtentReportManager.LogTestStep(Status.Info, "Running the test");
                 ExtentReportManager.LogTestStep(Status.Info, $"Filled education fields with data: {UniversityName}, {Country}, {Degree}, {Title}, {Year}");
 
-                
+
                 educationpageobj.AddEducation(UniversityName, Country, Degree, Title, Year);
-                
+
                 // Take a screenshot and attach it to the report                
                 var screenshotPath = ScreenshotManager.TakeScreenshot(driver, $"TestData-{Degree}-{Title}-{Year}");
                 ExtentReportManager.LogTestStepWithScreenShot(Status.Info, "Screenshot", screenshotPath);
             }
-        }        
+        }
 
         [Test, Order(2)]
-        public void UpdateEducationNew()
+        public void UpdateEduPositiveTest()
         {
-            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\UpdateEducation.json";
+            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\Education\PositiveUpdateEdu.json";
             // Read the JSON file
             string jsonText = File.ReadAllText(EducationJsonFile);
 
             // Deserialize the JSON into an object
             var educationData = JsonConvert.DeserializeObject<EducationJsonData>(jsonText);
 
-            for (int i = 1; i <= 6; i++)
+            for (int i = 1; i <= 2; i++)
             {
-                List<EducationRecords>? updates = educationData.GetType().GetProperty($"Update{i}")?.GetValue(educationData) as List<EducationRecords>;
+                List<EducationRecords>? updates = educationData.GetType().GetProperty($"PositiveUpdate{i}")?.GetValue(educationData) as List<EducationRecords>;
 
                 if (updates != null)
                 {
@@ -109,27 +104,11 @@ namespace ConsoleApp2.Tests
 
                         if (i == 1)
                         {
-                            educationpageobj.EditEducationUpdate1(UniversityName, Country, Degree, Title, Year);
+                            educationpageobj.EditEduPositiveUpdate1(UniversityName, Country, Degree, Title, Year);
                         }
                         else if (i == 2)
                         {
-                            educationpageobj.EditEducationUpdate2(UniversityName, Country, Degree, Title, Year);
-                        }
-                        else if (i == 3)
-                        {
-                            educationpageobj.EditEducationUpdate3(UniversityName, Country, Degree, Title, Year);
-                        }
-                        else if (i == 4)
-                        {
-                            educationpageobj.EditEducationUpdate4(UniversityName, Country, Degree, Title, Year);
-                        }
-                        else if (i == 5)
-                        {
-                            educationpageobj.EditEducationUpdate5(UniversityName, Country, Degree, Title, Year);
-                        }
-                        else if (i == 6)
-                        {
-                            educationpageobj.EditEducationUpdate6(UniversityName, Country, Degree, Title, Year);
+                            educationpageobj.EditEduPositiveUpdate2(UniversityName, Country, Degree, Title, Year);
                         }
                     }
                 }
@@ -148,9 +127,54 @@ namespace ConsoleApp2.Tests
         }
 
         [Test, Order(3)]
+        public void UpdateEduNegativeTest()
+        {
+            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\Education\NegativeUpdateEdu.json";
+            // Read the JSON file
+            string jsonText = File.ReadAllText(EducationJsonFile);
+
+            // Deserialize the JSON into an object
+            var educationData = JsonConvert.DeserializeObject<EducationJsonData>(jsonText);
+
+            for (int i = 1; i <= 4; i++)
+            {
+                List<EducationRecords>? updates = educationData.GetType().GetProperty($"NegativeUpdate{i}")?.GetValue(educationData) as List<EducationRecords>;
+
+                if (updates != null)
+                {
+                    foreach (var data in updates)
+                    {
+                        string UniversityName = data.UniversityName;
+                        string Country = data.Country;
+                        string Degree = data.Degree; //?? string.Empty;
+                        string Title = data.Title;
+                        int Year = data.Year;
+
+                        if (i == 1)
+                        {
+                            educationpageobj.EditEduNegativeUpdate1(UniversityName, Country, Degree, Title, Year);
+                        }
+                        else if (i == 2)
+                        {
+                            educationpageobj.EditEduNegativeUpdate2(UniversityName, Country, Degree, Title, Year);
+                        }
+                        else if (i == 3)
+                        {
+                            educationpageobj.EditEduNegativeUpdate3(UniversityName, Country, Degree, Title, Year);
+                        }
+                        else if (i == 4)
+                        {
+                            educationpageobj.EditEduNegativeUpdate4(UniversityName, Country, Degree, Title, Year);
+                        }
+                    }
+                }
+            }
+        }
+
+        [Test, Order(4)]
         public void DeleteEducation()
         {
-            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\DeleteEducation.json";
+            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\Education\DeleteEducation.json";
             // Read the JSON file
             string jsonText = File.ReadAllText(EducationJsonFile);
 
@@ -168,12 +192,12 @@ namespace ConsoleApp2.Tests
                 educationpageobj.RemoveEducation(UniversityName, Country, Degree, Title, Year);
 
             }
-            
+
         }
-        [Test, Order(4)]
+        [Test, Order(5)]
         public void CheckCancelFunction()
         {
-            educationpageobj.CancelFunction(); 
+            educationpageobj.CancelFunction();
         }
 
         [TearDown]
@@ -183,7 +207,7 @@ namespace ConsoleApp2.Tests
 
         }
 
-    }        
+    }
 
 }
-    
+

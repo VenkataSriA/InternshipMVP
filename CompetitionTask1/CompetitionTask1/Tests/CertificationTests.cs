@@ -3,26 +3,19 @@ using ConsoleApp2.Pages;
 using ConsoleApp2.Utilities;
 using Newtonsoft.Json;
 using NUnit.Framework;
-using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ConsoleApp2.Tests
 {
     [TestFixture]
     public class CertificationTests : CommonDriver
     {
-        CertificationPage certificationpageobj = new ();
+        CertificationPage certificationpageobj = new();
 
         [OneTimeSetUp]
         public void SetupExtentReports()
         {
-            
+
             string reportPath = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\Reports\";
             ExtentReportManager.InitializeExtentReports(reportPath);
 
@@ -43,54 +36,57 @@ namespace ConsoleApp2.Tests
             driver.Navigate().GoToUrl("http://localhost:5000/");
 
             //login 
-            LoginPage loginpageobj = new ();
+            LoginPage loginpageobj = new();
             loginpageobj.LoginSteps();
         }
         [Test, Order(1)]
         public void CreateCertification()
         {
-            string CertificationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\CertificationJson.json";
+            string CertificationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\Certification\AddCertificationJson.json";
             // Read the JSON file
             string jsonText = File.ReadAllText(CertificationJsonFile);
 
-            // Deserialize the JSON into an object
-            //List<ModelJsonData> educationdata = JsonConvert.DeserializeObject<List<ModelJsonData>>(jsonText);
-            //ModelJsonData edudata = educationdata.ElementAt(0);
-
             var certificationData = JsonConvert.DeserializeObject<CertificationJsonData>(jsonText);
-            //var educationData = JsonConvert.DeserializeObject<List<EducationJsonData>>(jsonText);
-            //dynamic educationData = JsonConvert.DeserializeObject(jsonText);
 
-            foreach (var data in certificationData.Create)
+            foreach (var data in certificationData.PositiveCreateTest)
             {
                 string Certificate = data.Certificate;
-                string CertifiedFrom = data.CertifiedFrom;                
+                string CertifiedFrom = data.CertifiedFrom;
                 int Year = data.Year;
 
                 ExtentReportManager.CreateTest("Adding records to Certification", $"CerificateName: {Certificate}, CertifiedBy: {CertifiedFrom}, Year: {Year}");
                 ExtentReportManager.LogTestStep(Status.Info, "Running the test");
                 ExtentReportManager.LogTestStep(Status.Info, $"Filled Certification fields with data: {Certificate}, {CertifiedFrom}, {Year}");
 
-                
                 certificationpageobj.AddCertification(Certificate, CertifiedFrom, Year);
+            }
+            foreach (var data in certificationData.NegativeCreateTest)
+            {
+                string Certificate = data.Certificate;
+                string CertifiedFrom = data.CertifiedFrom;
+                int Year = data.Year;
 
-                
+                ExtentReportManager.CreateTest("Adding records to Certification", $"CerificateName: {Certificate}, CertifiedBy: {CertifiedFrom}, Year: {Year}");
+                ExtentReportManager.LogTestStep(Status.Info, "Running the test");
+                ExtentReportManager.LogTestStep(Status.Info, $"Filled Certification fields with data: {Certificate}, {CertifiedFrom}, {Year}");
+
+                certificationpageobj.AddCertification(Certificate, CertifiedFrom, Year);
             }
         }
 
         [Test, Order(2)]
-        public void UpdateCertification()
+        public void PositiveUpdateCertification()
         {
 
-            string CertificationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\UpdateCertification.json";
+            string CertificationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\Certification\PositiveUpdateCerti.json";
             // Read the JSON file
             string jsonText = File.ReadAllText(CertificationJsonFile);
-           
+
             var certificationData = JsonConvert.DeserializeObject<CertificationJsonData>(jsonText);
 
-            for (int i = 1; i <= 6; i++)
+            for (int i = 1; i <= 2; i++)
             {
-                List<CertificationRecords>? updates = certificationData.GetType().GetProperty($"Update{i}")?.GetValue(certificationData) as List<CertificationRecords>;
+                List<CertificationRecords>? updates = certificationData.GetType().GetProperty($"PositiveUpdate{i}")?.GetValue(certificationData) as List<CertificationRecords>;
 
                 if (updates != null)
                 {
@@ -102,38 +98,64 @@ namespace ConsoleApp2.Tests
 
                         if (i == 1)
                         {
-                            certificationpageobj.EditCertificationUpdate1(Certificate, CertifiedFrom, Year);
+                            certificationpageobj.EditCertiPositiveUpdate1(Certificate, CertifiedFrom, Year);
                         }
                         else if (i == 2)
                         {
-                            certificationpageobj.EditCertificationUpdate2(Certificate, CertifiedFrom, Year);
-                        }
-                        else if (i == 3)
-                        {
-                            certificationpageobj.EditCertificationUpdate3(Certificate, CertifiedFrom, Year);
-                        }
-                        else if (i == 4)
-                        {
-                            certificationpageobj.EditCertificationUpdate4(Certificate, CertifiedFrom, Year);
-                        }
-                        else if (i == 5)
-                        {
-                            certificationpageobj.EditCertificationUpdate5(Certificate, CertifiedFrom, Year);
-                        }
-                        else if (i == 6)
-                        {
-                            certificationpageobj.EditCertificationUpdate6(Certificate, CertifiedFrom, Year);
+                            certificationpageobj.EditCertiPositiveUpdate2(Certificate, CertifiedFrom, Year);
                         }
 
                     }
                 }
             }
         }
-    
         [Test, Order(3)]
+        public void NegativeUpdateCertification()
+        {
+            string CertificationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\Certification\NegativeUpdateCerti.json";
+            // Read the JSON file
+            string jsonText = File.ReadAllText(CertificationJsonFile);
+
+            var certificationData = JsonConvert.DeserializeObject<CertificationJsonData>(jsonText);
+
+            for (int i = 1; i <= 4; i++)
+            {
+                List<CertificationRecords>? updates = certificationData.GetType().GetProperty($"NegativeUpdate{i}")?.GetValue(certificationData) as List<CertificationRecords>;
+
+                if (updates != null)
+                {
+                    foreach (var data in updates)
+                    {
+                        string Certificate = data.Certificate;
+                        string CertifiedFrom = data.CertifiedFrom;
+                        int Year = data.Year;
+
+                        if (i == 1)
+                        {
+                            certificationpageobj.EditCertiNegativeUpdate1(Certificate, CertifiedFrom, Year);
+                        }
+                        else if (i == 2)
+                        {
+                            certificationpageobj.EditCertiNegativeUpdate2(Certificate, CertifiedFrom, Year);
+                        }
+                        else if (i == 3)
+                        {
+                            certificationpageobj.EditCertiNegativeUpdate3(Certificate, CertifiedFrom, Year);
+                        }
+                        else if (i == 4)
+                        {
+                            certificationpageobj.EditCertiNegativeUpdate4(Certificate, CertifiedFrom, Year);
+                        }
+
+                    }
+                }
+            }
+        }
+
+        [Test, Order(4)]
         public void DeleteCertificaction()
         {
-            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\DeleteCertification.json";
+            string EducationJsonFile = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\JsonData\Certification\DeleteCertification.json";
             // Read the JSON file
             string jsonText = File.ReadAllText(EducationJsonFile);
 
@@ -149,9 +171,9 @@ namespace ConsoleApp2.Tests
                 certificationpageobj.RemoveCertification(Certificate, CertifiedFrom, Year);
 
             }
-            
+
         }
-        [Test, Order(4)]
+        [Test, Order(5)]
         public void CheckCancelFunction()
         {
             certificationpageobj.CancelFunction();

@@ -1,14 +1,8 @@
 ﻿using AventStack.ExtentReports;
 using ConsoleApp2.Utilities;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
-using System;
-using System.Diagnostics.Metrics;
 
 
 namespace ConsoleApp2.Pages
@@ -40,7 +34,7 @@ namespace ConsoleApp2.Pages
             profileOption.Click();
 
         }
-        public void AddEducation(string UniversityName, string Country, string Degree, string Title, int Year)        
+        public void AddEducation(string UniversityName, string Country, string Degree, string Title, int Year)
         {
             //GoToProfilePage();
             driver.FindElement(profileTab).Click();
@@ -110,6 +104,10 @@ namespace ConsoleApp2.Pages
 
                 driver.FindElement(cancelButton).Click();
             }
+
+            Actions action = new(driver);
+            action.SendKeys(Keys.PageDown).Perform();
+            Thread.Sleep(500);
         }
 
         public void EditEducation(string UniversityName, string Country, string Degree, string Title, int Year)
@@ -177,15 +175,15 @@ namespace ConsoleApp2.Pages
             By closeMessageBoxButton = By.XPath("//a[@class='ns-close']");
             driver.FindElement(closeMessageBoxButton).Click();
 
-            if (actualMessage == expectedMessage2 || actualMessage == expectedMessage4)
+            if (actualMessage == expectedMessage2 || actualMessage == expectedMessage3 || actualMessage == expectedMessage4)
             {
                 //click on cancel button
                 IWebElement cancelUpdate = driver.FindElement(By.XPath("//input[@value='Cancel']"));
-                cancelUpdate.Click();                
+                cancelUpdate.Click();
             }
         }
 
-        public void EditEducationUpdate1(string UniversityName, string Country, string Degree, string Title, int Year)
+        public void EditEduPositiveUpdate1(string UniversityName, string Country, string Degree, string Title, int Year)
         {
             driver.FindElement(profileTab).Click();
 
@@ -196,16 +194,16 @@ namespace ConsoleApp2.Pages
             try
             {
                 //find the required record to edit    1st row
-                //IWebElement updateIcon = driver.FindElement(By.XPath("//tbody[tr[td[text()='United States'] and td[text()='B.A']]]//span[1]"));                
+                //IWebElement updateIcon = driver.FindElement(By.XPath($"//tbody[tr[td[text()='{Country}'] and td[text()='{Title}']]]//span[1]"));                
                 IWebElement updateIcon = driver.FindElement(By.XPath("//div[3]/form/div[4]/div/div[2]/div/table/tbody[1]/tr/td[6]/span[1]/i"));
                 updateIcon.Click();
             }
-            catch(Exception ex) { Console.WriteLine(ex.Message); }
+            catch (Exception ex) { Console.WriteLine(ex.Message); }
 
-            EditEducation( UniversityName,  Country,  Degree,  Title,  Year);
+            EditEducation(UniversityName, Country, Degree, Title, Year);
         }
 
-        public void EditEducationUpdate2(string UniversityName, string Country, string Degree, string Title, int Year)
+        public void EditEduPositiveUpdate2(string UniversityName, string Country, string Degree, string Title, int Year)
         {
             try
             {
@@ -218,8 +216,13 @@ namespace ConsoleApp2.Pages
             EditEducation(UniversityName, Country, Degree, Title, Year);
         }
 
-        public void EditEducationUpdate3(string UniversityName, string Country, string Degree, string Title, int Year)
+        public void EditEduNegativeUpdate1(string UniversityName, string Country, string Degree, string Title, int Year)
         {
+            driver.FindElement(profileTab).Click();
+
+            //find and click on education tab
+            Wait.WaitToBeClickable(driver, "XPath", "//*[@id=\"account-profile-section\"]/div/section[1]/div/a[2]", 7);
+            driver.FindElement(educationTab).Click();
             try
             {
                 //find the required record to edit       3rd row
@@ -230,7 +233,7 @@ namespace ConsoleApp2.Pages
 
             EditEducation(UniversityName, Country, Degree, Title, Year);
         }
-        public void EditEducationUpdate4(string UniversityName, string Country, string Degree, string Title, int Year)
+        public void EditEduNegativeUpdate2(string UniversityName, string Country, string Degree, string Title, int Year)
         {
             try
             {
@@ -242,7 +245,7 @@ namespace ConsoleApp2.Pages
 
             EditEducation(UniversityName, Country, Degree, Title, Year);
         }
-        public void EditEducationUpdate5(string UniversityName, string Country, string Degree, string Title, int Year)
+        public void EditEduNegativeUpdate3(string UniversityName, string Country, string Degree, string Title, int Year)
         {
             try
             {
@@ -255,9 +258,9 @@ namespace ConsoleApp2.Pages
             EditEducation(UniversityName, Country, Degree, Title, Year);
         }
 
-        public void EditEducationUpdate6(string UniversityName, string Country, string Degree, string Title, int Year)
+        public void EditEduNegativeUpdate4(string UniversityName, string Country, string Degree, string Title, int Year)
         {
-            
+
             try
             {
                 //find the required record to edit       6th row
@@ -278,7 +281,7 @@ namespace ConsoleApp2.Pages
 
             ExtentReportManager.CreateTest("Deleting records to Education", "Containg Canada,B.Tech");
             ExtentReportManager.LogTestStep(Status.Info, "Running the test");
-           
+
 
             try
             {
@@ -302,7 +305,7 @@ namespace ConsoleApp2.Pages
                 ExtentReportManager.LogTestStepWithScreenShot(Status.Info, "Screenshot", screenshotPath);
 
             }
-            catch (Exception )
+            catch (Exception)
             {
                 Console.WriteLine("Element not found");
             }
@@ -323,11 +326,8 @@ namespace ConsoleApp2.Pages
             updateIcon.Click();
             IWebElement cancelUpdate = driver.FindElement(By.XPath("//input[@value='Cancel']"));
             cancelUpdate.Click();
-                        
+
         }
-    } 
+    }
 
 }
-
-
-

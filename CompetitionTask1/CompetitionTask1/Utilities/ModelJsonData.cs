@@ -1,24 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ConsoleApp2.Utilities
+﻿namespace ConsoleApp2.Utilities
 {
     public class ModelJsonData
     {
-        
+
     }
     public class EducationJsonData
     {
         public List<EducationRecords> Create { get; set; }
-        public List<EducationRecords> Update1 { get; set; }
-        public List<EducationRecords> Update2 { get; set; }
-        public List<EducationRecords> Update3 { get; set; }
-        public List<EducationRecords> Update4 { get; set; }
-        public List<EducationRecords> Update5 { get; set; }
-        public List<EducationRecords> Update6 { get; set; }
+        public List<EducationRecords> PositiveUpdate1 { get; set; }
+        public List<EducationRecords> PositiveUpdate2 { get; set; }
+        public List<EducationRecords> NegativeUpdate1 { get; set; }
+        public List<EducationRecords> NegativeUpdate2 { get; set; }
+        public List<EducationRecords> NegativeUpdate3 { get; set; }
+        public List<EducationRecords> NegativeUpdate4 { get; set; }
         public List<EducationRecords> Delete1 { get; set; }
     }
 
@@ -34,21 +28,30 @@ namespace ConsoleApp2.Utilities
 
     public class CertificationJsonData
     {
-        public List<CertificationRecords> Create { get; set; }       
-        public List<CertificationRecords> Update1 { get; set; }
-        public List<CertificationRecords> Update2 { get; set; }
-        public List<CertificationRecords> Update3 { get; set; }
-        public List<CertificationRecords> Update4 { get; set; }
-        public List<CertificationRecords> Update5 { get; set; }
-        public List<CertificationRecords> Update6 { get; set; }
+        public List<CertificationRecords> PositiveCreateTest { get; set; }
+        public List<CertificationRecords> NegativeCreateTest { get; set; }
+        public List<CertificationRecords> PositiveUpdate1 { get; set; }
+        public List<CertificationRecords> PositiveUpdate2 { get; set; }
+        public List<CertificationRecords> NegativeUpdate1 { get; set; }
+        public List<CertificationRecords> NegativeUpdate2 { get; set; }
+        public List<CertificationRecords> NegativeUpdate3 { get; set; }
+        public List<CertificationRecords> NegativeUpdate4 { get; set; }
         public List<CertificationRecords> Delete1 { get; set; }
     }
 
     public class CertificationRecords
     {
         public string Certificate { get; set; }
-        public string CertifiedFrom { get; set; }       
+        public string CertifiedFrom { get; set; }
         public int Year { get; set; }
 
     }
+    public class AddCertificationModel
+    {
+        public string Certificate { get; set; }
+        public string CertifiedFrom { get; set; }
+        public int Year { get; set; }
+
+    }
+
 }

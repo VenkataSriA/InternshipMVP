@@ -1,16 +1,10 @@
-﻿using AventStack.ExtentReports.Reporter;
-using AventStack.ExtentReports;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
 using OpenQA.Selenium;
-using NUnit.Framework;
 
 namespace ConsoleApp2.Utilities
 {
-    public class ExtentReportManager       
+    public class ExtentReportManager
     {
         private static ExtentReports extent_Report;
         private static ExtentTest test;
@@ -20,14 +14,14 @@ namespace ConsoleApp2.Utilities
             extent_Report = new ExtentReports();
             var htmlReporter = new ExtentHtmlReporter(reportFilePath);
             extent_Report.AttachReporter(htmlReporter);
-            
+
         }
 
         public static void CreateTest(string testName, string testDescription)
         {
             test = extent_Report.CreateTest(testName, testDescription);
             //test.AssignCategory(testDescription); 
-            test.AssignAuthor(testDescription);   
+            test.AssignAuthor(testDescription);
         }
 
         public static void LogTestStep(Status status, string logMessage)
@@ -44,14 +38,14 @@ namespace ConsoleApp2.Utilities
         }
     }
 
-    
+
     public class ScreenshotManager
     {
         public static string TakeScreenshot(IWebDriver driver, string screenshotName)
         {
             ITakesScreenshot ts = (ITakesScreenshot)driver;
             Screenshot screenshot = ts.GetScreenshot();
-            string screenshotDir = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\Reports\";
+            string screenshotDir = @"C:\IDconnect\InternshipMVP\CompetitionTask1\CompetitionTask1\ScreenshotImages\";
             string screenshotFileName = $"{screenshotName}_{DateTime.Now:yyyy-MM-dd-HH.mm.ss}.png";
             string screenshotPath = Path.Combine(screenshotDir, screenshotFileName);
 
@@ -60,6 +54,6 @@ namespace ConsoleApp2.Utilities
             return screenshotPath;
         }
     }
-   
+
 }
 
