@@ -1,0 +1,39 @@
+{
+  "NegativeUpdate1": [
+    {
+      "UniversityName": "ms College",
+      "Country": "Germany",
+      "Title": "PHD",
+      "Degree": "masters",
+      "Year": 2019
+    }
+  ],
+  "NegativeUpdate2": [
+    {
+      "UniversityName": "",
+      "Country": "Belgium",
+      "Title": "PHD",
+      "Degree": "",
+      "Year": 2019
+    }
+  ],
+  "NegativeUpdate3": [
+    {
+      "UniversityName": " ",
+      "Country": "Belgium",
+      "Title": "PHD",
+      "Degree": " ",
+      "Year": 2019
+    }
+  ],
+  "NegativeUpdate4": [
+    {
+      "UniversityName": "MS College",
+      "Country": "Germany",
+      "Title": "PHD",
+      "Degree": "Masters",
+      "Year": 2019
+    }
+
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "NegativeUpdate1": [
+    {
+      "Certificate": "Manual",
+      "CertifiedFrom": "MI",
+      "Year": 2009
+    }
+  ],
+  "NegativeUpdate2": [
+    {
+      "Certificate": "manual",
+      "CertifiedFrom": "mi",
+      "Year": 2009
+    }
+  ],
+  "NegativeUpdate3": [
+    {
+      "Certificate": "",
+      "CertifiedFrom": "MI",
+      "Year": 2009
+    }
+  ],
+  "NegativeUpdate4": [
+    {
+      "Certificate": " ",
+      "CertifiedFrom": "Adobe",
+      "Year": 2010
+    }
+  ]
+}
