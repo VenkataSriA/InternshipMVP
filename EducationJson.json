@@ -1,0 +1,19 @@
+{
+    "Education": [
+      {
+        "University Name": "AUT College",
+        "country": "United States",
+        "Title": "B.A",
+        "Degree": "Bachelors",
+        "Year": 2020
+      },
+      {
+        "University Name": "AU College",
+        "country": "New Zealand",
+        "Title": "B.Tech",
+        "Degree": "Bachelors",
+        "Year": 2018
+      }
+    ]
+  }
+  
